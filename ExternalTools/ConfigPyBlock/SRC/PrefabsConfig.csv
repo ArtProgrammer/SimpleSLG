@@ -1,0 +1,7 @@
+ID,Name,Path
+INT,STRING,STRING
+,,
+10001,Casino,Prefabs/Buildings/Casino
+10002,Club,Prefabs/Buildings/Club
+10003,Mall,Prefabs/Buildings/Mall
+10004,Market,Prefabs/Buildings/Market

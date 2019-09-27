@@ -1,0 +1,7 @@
+ID,Name,Path
+INT,STRING,STRING
+,,
+10001,Casino,Icons/Casino
+10002,Mall,Icons/Mall
+10003,Market,Icons/Market
+10004,Club,Icons/Club
