@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using SimpleAI.Game;
-using SimpleAI.Messaging;
+using SimpleAI;
 using SimpleAI.PoolSystem;
 using SimpleAI.Timer;
 

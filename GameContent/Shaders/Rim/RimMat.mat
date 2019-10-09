@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: RimMat
-  m_Shader: {fileID: 4800000, guid: ade0cf9a1aad3074cb91bd30cf921c2c, type: 3}
+  m_Shader: {fileID: 4800000, guid: 29ca19b16af79504eb3afaa6a620bb35, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0

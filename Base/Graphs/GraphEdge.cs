@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SimpleAI.Graphs
 {
-    class GraphEdge
+    public class GraphEdge
     {
         private int SrcIdx = 0;
 

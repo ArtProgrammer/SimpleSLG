@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimpleAI.Graphs
 {
-    class SparseGraph<TNode, TEdge>
+    public class SparseGraph<TNode, TEdge>
         where TNode : GraphNode, new()
         where TEdge : GraphEdge, new()
     {

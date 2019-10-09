@@ -2,17 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalPeopleFleeGoalEval : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+using SimpleAI;
 
-    // Update is called once per frame
-    void Update()
+namespace GameContent
+{
+    public class NormalPeopleFleeGoalEval : GoalEvaluator<NormalPeople>
     {
-        
+        public NormalPeopleFleeGoalEval(float bias) : base(bias)
+        {
+
+        }
+
+        public override float CalculateDesirability(NormalPeople p)
+        {
+            return 0.0f;
+        }
+
+        public override void SetGoal(NormalPeople p)
+        {
+
+        }
     }
 }

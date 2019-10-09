@@ -83,7 +83,7 @@ namespace SimpleAI.Inputs
                     ref CurHitObject,
                     ref CurClickPos))
                 {
-                    if (!System.Object.ReferenceEquals(null, InputKeeper.Instance.OnLeftClickPos))
+                    if (!System.Object.ReferenceEquals(null, InputKeeper.Instance.OnRightClickPos))
                     {
                         InputKeeper.Instance.OnRightClickPos(CurClickPos);
                     }

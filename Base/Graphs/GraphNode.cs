@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SimpleAI.Graphs
 {
-    class GraphNode
+    public class GraphNode
     {
         private List<GraphEdge> InEdges = new List<GraphEdge>();
 
@@ -39,6 +39,11 @@ namespace SimpleAI.Graphs
         public void RemoveEdge(GraphEdge edge)
         {
             InEdges.Remove(edge);
+        }
+
+        public List<GraphEdge> GetEdges()
+        {
+            return InEdges;
         }
     }
 }

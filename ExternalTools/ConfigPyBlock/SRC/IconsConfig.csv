@@ -1,7 +1,10 @@
-ID,Name,Path
-INT,STRING,STRING
-,,
-10001,Casino,Icons/Casino
-10002,Mall,Icons/Mall
-10003,Market,Icons/Market
-10004,Club,Icons/Club
+ID,Name,Path,Des
+INT,STRING,STRING,STRING
+,,,
+10001,Casino,Icons/Casino,Casino
+10002,Mall,Icons/Mall,Mall
+10003,Market,Icons/Market,Market
+10004,Club,Icons/Club,Club
+10005,NormalMelee,Icons/NormalMelee,NormalMelee
+10006,AxeMan,Icons/AxeMan,AxeMan
+10007,BowMan,Icons/BowMan,BowMan

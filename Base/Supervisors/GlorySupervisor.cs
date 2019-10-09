@@ -14,6 +14,7 @@ using SimpleAI.PoolSystem;
 //using GameContent.SimAgent;
 
 //using Config;
+using GameContent;
 
 namespace SimpleAI.Supervisors
 {
@@ -54,7 +55,9 @@ namespace SimpleAI.Supervisors
             // load from config
             SpatialManager.Instance.Init(0, 0, 0, 100, 100, 100);
 
-            //ConfigDataMgr.Instance.Initialize();
+            ConfigDataMgr.Instance.Initialize();
+
+            GangManager.Instance.Initialize();
 
             //UILord.Instance.Init();
 

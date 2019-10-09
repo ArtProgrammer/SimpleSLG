@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SimpleAI.Messaging
+namespace SimpleAI
 {
     /// <summary>
     /// The message to be sent by dispatcher among the entities.

@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using SimpleAI.Game;
-using SimpleAI.Messaging;
+using SimpleAI;
 using SimpleAI.PoolSystem;
 
 namespace GameContent
 {
     public class BaseRole : BaseEntity, IPoolableComponent
     {
+        public int HP = 100;
+
+        public bool IsAlive = true;
+
         public BaseMemory Memory = null;
 
         public int MoneyLeft = 0;
@@ -26,6 +30,9 @@ namespace GameContent
 
         public float HappinessRate = 1.0f;
 
+        [SerializeField]
+        protected float TheMoveSpeed = 3.0f;
+
         // Start is called before the first frame update
         #region PRIVATE_FUNCTIONS
 
@@ -39,12 +46,16 @@ namespace GameContent
 
         public virtual void Spawned()
         {
-
+            IsActive = true;
+            IsAlive = true;
+            gameObject.SetActive(true);
         }
 
         public virtual void Despawned()
         {
-
+            IsActive = false;
+            IsAlive = false;
+            gameObject.SetActive(false);
         }
 
         public override void PreInitialize()

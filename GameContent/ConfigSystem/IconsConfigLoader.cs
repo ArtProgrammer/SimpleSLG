@@ -11,11 +11,12 @@ namespace Config {
             int index = 0;
             while (index < periods.Length) {
                 string[] split = periods[index].Split(',');
-                if (split.Length == 3) {
+                if (split.Length == 4) {
                     IconsConfig data = new IconsConfig();
                     int.TryParse(split[0], out data.ID);
                     data.Name= split[1];
                     data.Path= split[2];
+                    data.Des= split[3];
                     Datas.Add(data.ID, data);
                 }
                 index++;

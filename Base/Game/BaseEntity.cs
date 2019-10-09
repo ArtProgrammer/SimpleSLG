@@ -25,6 +25,12 @@ namespace SimpleAI.Game
 
         public bool IsPlayerControl = false;
 
+        public float CollideRadius = 1.0f;
+
+        public float AttackRadius = 3.0f;
+
+        public float AlertRadius = 10.0f;
+
         public int ID
         {
             get { return TheID; }
