@@ -270,18 +270,13 @@ namespace GameContent
                 
                 if (result)
                 {
-                    //T temp = (T)PotentialTargets[i];
                     T item = (T)PotentialTargets[i];
                     bool isNull = System.Object.ReferenceEquals(item, null);
                     bool isSame = System.Object.ReferenceEquals(item, Owner);
                     if (!System.Object.ReferenceEquals(item, null) &&
                         !System.Object.ReferenceEquals(item, Owner) &&
                         item.IsAlive &&
-                        item.GangID != Owner.GangID
-                        //GangManager.Instance.IsEnemyGang(item.GangID, Owner.GangID)
-                                /* &&
-                                DefenceSystem.Instance.IsEnemyRace(Owner.RaceSignal,
-                                    item.RaceSignal)*/
+                        CombatHolder.Instance.IsEnemy(item.GangID, Owner.GangID)
                         )
                     {
                         //if (DefenceSystem.Instance.IsEnemyRace(Owner.RaceSignal,

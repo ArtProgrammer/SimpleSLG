@@ -22,6 +22,22 @@ namespace GameContent
 
         public int CfgID = 0;
 
+        public GameObject SelectPlane;
+
+        public int TentID = 0;
+
+        public void OnSelect()
+        {
+            if (SelectPlane)
+                SelectPlane.SetActive(true);
+        }
+
+        public void OnLoseSelect()
+        {
+            if (SelectPlane)
+                SelectPlane.SetActive(false);
+        }
+
         //public Transform WorkLocation;
 
         public NavMeshAgent NavAgent;
@@ -170,11 +186,11 @@ namespace GameContent
 
             LoadCfgData(CfgID);
 
-            BrainReg = new Regulator(BrainRegIntervel);
+            BrainReg = new Regulator(BrainRegIntervel + UnityEngine.Random.Range(-0.3f, 0.30f));
 
-            SensorReg = new Regulator(SensorRegIntervel);
+            SensorReg = new Regulator(SensorRegIntervel + UnityEngine.Random.Range(-0.3f, 0.30f));
 
-            TargetSysReg = new Regulator(TargetSysRegIntervel);
+            TargetSysReg = new Regulator(TargetSysRegIntervel + UnityEngine.Random.Range(-0.5f, 0.10f));
 
             Brain = new SoldierThink(this, 1);
 

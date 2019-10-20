@@ -86,6 +86,7 @@ namespace SimpleAI.Supervisors
 
         private void Start()
         {
+            GangManager.Instance.CurGang.Economic.SetSelected();
         }
 
         public void SpawnNpc(int cfgid)

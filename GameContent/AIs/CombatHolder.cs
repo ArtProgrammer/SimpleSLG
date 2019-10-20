@@ -18,6 +18,16 @@ namespace GameContent
             }
         }
 
+        public bool IsEnemy(int isrcGangID, int dstGangID)
+        {
+            return GangManager.Instance.IsEnemyGangs(isrcGangID, dstGangID);
+        }
+
+        public bool IsAllien(int isrcGangID, int dstGangID)
+        {
+            return GangManager.Instance.IsAllienGangs(isrcGangID, dstGangID);
+        }
+
         public bool IsCloseEnough(BaseEntity src, BaseEntity dst)
         {
             Vector3 dis = src.Position - dst.Position;

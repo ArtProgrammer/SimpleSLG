@@ -7,7 +7,7 @@ using SimpleAI.Utils;
 
 namespace GameContent
 {
-    public class EconomicSystem : MonoBehaviour
+    public class EconomicSystem
     {
         public int ID = 0;
 
@@ -21,14 +21,19 @@ namespace GameContent
 
         public bool IsCurEconomicSys = false;
 
+        public EconomicSystem()
+        {
+            Initialize();
+        }
+
         private void Awake()
         {
-            EconomicManager.Instance.AddEconomic(ID, this);
+            
+        }
 
-            if (IsCurEconomicSys)
-            {
-                EconomicManager.Instance.CurEconomicSysSelect = this;
-            }
+        public void SetSelected()
+        {
+            EconomicManager.Instance.CurEconomicSysSelect = this;
         }
 
         private void Start()
@@ -38,12 +43,19 @@ namespace GameContent
 
         public void Initialize()
         {
+            EconomicManager.Instance.AddEconomic(ID, this);
 
+            //if (IsCurEconomicSys)
+            //{
+            //    EconomicManager.Instance.CurEconomicSysSelect = this;
+            //}
         }
 
         public bool PushTax(int num)
         {
             MonthMoney += num;
+
+            TotalMoney += num;
 
             if (OnMoneyChange != null)
             {

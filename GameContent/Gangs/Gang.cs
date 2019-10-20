@@ -98,6 +98,8 @@ namespace GameContent
         {
             GangManager.Instance.AddGang(this);
 
+            Economic = new EconomicSystem(); 
+
             ID = IDAllocator.Instance.GetID();
 
             TheArmy = new Army();

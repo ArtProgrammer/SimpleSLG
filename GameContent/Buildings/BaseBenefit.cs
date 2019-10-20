@@ -16,6 +16,8 @@ namespace GameContent
         [SerializeField]
         private int TheOwnerID = 0;
 
+        private List<int> OwnersID = new List<int>();
+
         [SerializeField]
         private int MoneyPerMonth = 0;
 
@@ -47,6 +49,9 @@ namespace GameContent
         private int CurrentEmployerCount = 1;
 
         private float EmployerTaxRate = 1.0f;
+
+        [SerializeField]
+        private float CaptureRange = 5.0f;
 
         #endregion
 
@@ -83,6 +88,17 @@ namespace GameContent
             {
                 return TheOwnerID;
             }
+        }
+
+        public void AddOwner(int id)
+        {
+            if (!OwnersID.Contains(id))
+                OwnersID.Add(id);
+        }
+
+        public void RemoveOwner(int id)
+        {
+            OwnersID.Remove(id);
         }
         #endregion
 
@@ -126,7 +142,9 @@ namespace GameContent
 
             MonthSeconds = GameDateTime.Instance.SecondPerDay * MonthDays;
 
-            BenefitReg = new Regulator(1.0f / MonthSeconds);
+            //BenefitReg = new Regulator(1.0f / MonthSeconds);
+
+            BenefitReg = new Regulator(3.0f);
         }
 
         public override void Process(float dt)
@@ -149,16 +167,21 @@ namespace GameContent
 
         public void PushTax()
         {
-            //var input = 
+            if (OwnersID.Count == 0) return;
+
             int num = (int)(MoneyPerMonth * TaxRate * EmployerTaxRate);
-            if (EconomicManager.Instance.PushTax(OwnerID, num))
+            int taxPerOwner = num / OwnersID.Count;
+
+            int taxes = 0;
+            foreach (var id in OwnersID)
             {
-                MoneyLeft += (int)(MoneyPerMonth * (1.0f - TaxRate));
+                if (EconomicManager.Instance.PushTax(OwnerID, taxPerOwner))
+                {
+                    taxes += taxPerOwner;
+                }
             }
-            else
-            {
-                MoneyLeft += MoneyPerMonth;
-            }
+
+            MoneyLeft += MoneyPerMonth - taxes;
         }
         #endregion
     }

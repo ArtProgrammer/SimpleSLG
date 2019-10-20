@@ -5,6 +5,7 @@ using UnityEngine;
 using SimpleAI.PoolSystem;
 using SimpleAI.Inputs;
 using SimpleAI.Utils;
+using SimpleAI.Spatial;
 
 /// <summary>
 /// One tent has 6 soldiers.
@@ -23,6 +24,8 @@ namespace GameContent
 
         private List<BaseSoldier> Soldiers = new List<BaseSoldier>();
 
+        public BaseSoldier Commander;
+
         [SerializeField]
         private int CurCount = 0;
 
@@ -31,6 +34,12 @@ namespace GameContent
         public bool IsPlayerCtrl = false;
 
         public Vector3 Location = Vector3.zero;
+
+        public float SharingRange = 10.0f;
+
+        private Bounds SearchBound;
+
+        public List<int> SharingBenefitIDs = new List<int>();
 
         public void OnSoldierDie(int id)
         {
@@ -90,6 +99,8 @@ namespace GameContent
             if (CurCount < MaxCount)
             {
                 Soldiers.Add(soldier);
+                soldier.TentID = ID;
+                soldier.OnSoldierDie += OnSoldierDie;
                 CurCount++;
             }
         }
@@ -103,10 +114,31 @@ namespace GameContent
                     if (Soldiers[i].ID == id)
                     {
                         Soldiers.Remove(Soldiers[i]);
+                        Soldiers[i].TentID = 0;
                         CurCount--;
                         break;
                     }
                 }
+            }
+        }
+
+        private List<Vector3> SoldiersPos = new List<Vector3>();
+
+        /// <summary>
+        /// just one line for now.
+        /// </summary>
+        /// <param name="pos"></param>
+        public void CalSoldierPositions(Vector3 pos)
+        {
+            SoldiersPos.Clear();
+
+            int countPerRow = 6;
+            for (int i = 0; i < Soldiers.Count; i++)
+            {
+                int j = i / countPerRow;
+                int m = i % countPerRow;
+
+                SoldiersPos.Add(new Vector3(pos.x + m * 1.50f, pos.y, pos.z + j * 1.50f));
             }
         }
 
@@ -126,10 +158,69 @@ namespace GameContent
         /// <param name="pos"></param>
         public void MoveTo(Vector3 pos)
         {
+            CalSoldierPositions(pos);
+
             for (int i = 0; i < Soldiers.Count; i++)
             {
-                Soldiers[i].MoveTo(pos);
+                Soldiers[i].MoveTo(SoldiersPos[i]);
             }
+        }
+
+        public void OnSelect()
+        {
+            for (int i = 0; i < Soldiers.Count; i++)
+            {
+                Soldiers[i].OnSelect();
+            }
+        }
+
+        public void OnLoseSelect()
+        {
+            for (int i = 0; i < Soldiers.Count; i++)
+            {
+                Soldiers[i].OnLoseSelect();
+            }
+        }
+
+        public void TryOccupy()
+        {
+            SearchBound.center = Location;
+            SearchBound.size = Vector3.one * SharingRange;
+            //SharingRange;
+            List<SpatialFruitNode> nodes = new List<SpatialFruitNode>();
+            SpatialManager.Instance.QueryRange(ref SearchBound, nodes);
+
+            foreach (var node in nodes)
+            {
+                bool result = node is BaseBenefit;
+                if (result)
+                {
+                    var benefit = (BaseBenefit)node;
+                    AddBenefit(benefit);
+                }
+            }
+        }
+
+        public void AddBenefit(BaseBenefit benefit)
+        {
+            if (!SharingBenefitIDs.Contains(benefit.ID))
+            {
+                SharingBenefitIDs.Add(benefit.ID);
+                benefit.AddOwner(ID);
+            }
+        }
+
+        public void AddBenefitByID(int id)
+        {
+            if (!SharingBenefitIDs.Contains(id))
+            {
+                SharingBenefitIDs.Add(id);
+            }
+        }
+
+        public void RemoveBenefitByID(int id)
+        {
+            SharingBenefitIDs.Remove(id);
         }
     }
 }

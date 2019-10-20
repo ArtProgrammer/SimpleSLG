@@ -21,6 +21,8 @@ namespace GameContent
 
         private EconomicSystem CurEconSys;
 
+        public System.Action<EconomicSystem> OnEconomicSystemChange;
+
         public EconomicSystem CurEconomicSysSelect
         {
             set
@@ -29,6 +31,11 @@ namespace GameContent
                 {
                     //CurEconSys.OnMoneyChange = null;
                     CurEconSys = value;
+
+                    if (OnEconomicSystemChange != null)
+                    {
+                        OnEconomicSystemChange(CurEconSys);
+                    }
                 }
             }
             get

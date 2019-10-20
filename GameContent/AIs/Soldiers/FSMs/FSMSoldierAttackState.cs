@@ -37,7 +37,7 @@ namespace GameContent
                 else
                 {
                     Owner.StopMove();
-                    Owner.TargetSys.CurTarget.HPs -= Random.Range(3, 10);
+                    Owner.TargetSys.CurTarget.HPs -= Random.Range(1, 2);
                 }
             }
         }

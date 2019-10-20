@@ -22,11 +22,13 @@ namespace GameContent
 
     public class BaseWeapon
     {
+        public bool NeedBullet;
+
         public int ID;
 
         public int CfgID;
 
-        public float Inteval;
+        public float AttactInteval;
 
         public Regulator Reg;
 

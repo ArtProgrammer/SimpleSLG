@@ -72,7 +72,18 @@ namespace GameContent
             {
                 Tent tent = CurArmy.Tents[index];
 
-                CurArmy.CurTent = tent;
+                if (CurArmy.CurTent != tent)
+                {
+                    if (CurArmy.CurTent != null)
+                    {
+                        CurArmy.CurTent.OnLoseSelect();
+                        UIsHolder.Instance.TentActionPanel.Show();
+                    }
+
+                    CurArmy.CurTent = tent;
+
+                    CurArmy.CurTent.OnSelect();
+                }
 
                 //CurArmies.Clear();
                 //CurArmies.Add(tent);
